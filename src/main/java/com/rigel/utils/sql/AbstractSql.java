@@ -11,8 +11,8 @@ import java.util.List;
  */
 public abstract class AbstractSql<T> {
 
-    private static final String AND = ") \nAND (";
-    private static final String OR = ") \nOR (";
+    private static final String AND = ") AND (";
+    private static final String OR = ") OR (";
 
     private final SQLStatement sql = new SQLStatement();
 
@@ -275,7 +275,7 @@ public abstract class AbstractSql<T> {
                                String conjunction) {
             if (!parts.isEmpty()) {
                 if (!builder.isEmpty()) {
-                    builder.append("\n");
+                    builder.append(" ");
                 }
                 builder.append(keyword);
                 builder.append(" ");
@@ -310,11 +310,11 @@ public abstract class AbstractSql<T> {
         }
 
         private void joins(SafeAppendable builder) {
-            sqlClause(builder, "JOIN", join, "", "", "\nJOIN ");
-            sqlClause(builder, "INNER JOIN", innerJoin, "", "", "\nINNER JOIN ");
-            sqlClause(builder, "OUTER JOIN", outerJoin, "", "", "\nOUTER JOIN ");
-            sqlClause(builder, "LEFT OUTER JOIN", leftOuterJoin, "", "", "\nLEFT OUTER JOIN ");
-            sqlClause(builder, "RIGHT OUTER JOIN", rightOuterJoin, "", "", "\nRIGHT OUTER JOIN ");
+            sqlClause(builder, "JOIN", join, "", "", " JOIN ");
+            sqlClause(builder, "INNER JOIN", innerJoin, "", "", " INNER JOIN ");
+            sqlClause(builder, "OUTER JOIN", outerJoin, "", "", " OUTER JOIN ");
+            sqlClause(builder, "LEFT OUTER JOIN", leftOuterJoin, "", "", " LEFT OUTER JOIN ");
+            sqlClause(builder, "RIGHT OUTER JOIN", rightOuterJoin, "", "", " RIGHT OUTER JOIN ");
         }
 
         private String insertSQL(SafeAppendable builder) {
