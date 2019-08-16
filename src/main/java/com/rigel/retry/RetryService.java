@@ -25,13 +25,13 @@ public class RetryService {
     @Autowired
     private RetryComponent retryComponent;
 
-    public void remitWithRetry(RetryParam retryParam) throws RetryException {
+    public boolean remitWithRetry(RetryParam retryParam) throws RetryException {
         Retryer<Boolean> retryer = RetryerBuilder
                 .<Boolean>newBuilder()
                 //返回false也需要重试
                 .retryIfResult(e -> Objects.equals(e, false))
                 //重调策略
-                .withWaitStrategy(WaitStrategies.fixedWait(50, TimeUnit.MILLISECONDS))
+                .withWaitStrategy(WaitStrategies.fixedWait(5, TimeUnit.MILLISECONDS))
                 //尝试次数
                 .withStopStrategy(StopStrategies.stopAfterAttempt(3))
                 .build();
@@ -41,7 +41,8 @@ public class RetryService {
         } catch (ExecutionException e) {
             log.error("重试方法执行错误");
         } catch (RetryException e) {
-            throw e;
+            return false;
         }
+        return true;
     }
 }

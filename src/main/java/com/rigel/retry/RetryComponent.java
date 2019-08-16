@@ -11,7 +11,7 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class RetryComponent {
     public boolean remit(RetryParam retryParam) {
-        if (retryParam.getRemitId() == 0) {
+        if (retryParam.getRemitId() == -1) {
             try {
                 log.info("retryParam:{}", retryParam);
                 Thread.sleep(500);
@@ -19,9 +19,8 @@ public class RetryComponent {
                 log.error("thread sleep error.", e);
             }
             return false;
-        } else if (retryParam.getRemitId() == 1) {
-            return true;
         }
-        return false;
+
+        return true;
     }
 }

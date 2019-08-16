@@ -1,5 +1,8 @@
 package com.rigel.retry;
 
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,9 +21,10 @@ public class RetryServiceTest {
     @Autowired
     private RetryService retryService;
 
-    @Test(expected = RetryException.class)
+    @Test
     public void retryCallRpc() throws RetryException {
-        RetryParam retryParam = new RetryParam(0, 1000);
-        retryService.remitWithRetry(retryParam);
+        RetryParam retryParam = new RetryParam(-1, 1000);
+        boolean retryResult = retryService.remitWithRetry(retryParam);
+        assertFalse(retryResult);
     }
 }
