@@ -1,6 +1,6 @@
 package com.rigel.retry;
 
-import static org.junit.Assert.assertEquals;
+import static junit.framework.TestCase.assertTrue;
 import static org.junit.Assert.assertFalse;
 
 import org.junit.Test;
@@ -22,9 +22,16 @@ public class RetryServiceTest {
     private RetryService retryService;
 
     @Test
-    public void retryCallRpc() throws RetryException {
+    public void retryCallRpcFailed() throws RetryException {
         RetryParam retryParam = new RetryParam(-1, 1000);
         boolean retryResult = retryService.remitWithRetry(retryParam);
         assertFalse(retryResult);
+    }
+
+    @Test
+    public void retryCallRpcSuccess() throws RetryException {
+        RetryParam retryParam = new RetryParam(1, 1000);
+        boolean retryResult = retryService.remitWithRetry(retryParam);
+        assertTrue(retryResult);
     }
 }
