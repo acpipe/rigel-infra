@@ -1,8 +1,7 @@
-package com.rigel.concurrent;
+package com.rigel.concurrent.speedcontrol;
 
 import java.util.concurrent.atomic.AtomicInteger;
 
-import lombok.AllArgsConstructor;
 import lombok.Data;
 
 /**
@@ -13,11 +12,10 @@ import lombok.Data;
 public class Statistic {
     private AtomicInteger atomicInteger = new AtomicInteger(0);
 
-    private long start;
-    private long end;
+    private volatile long startTimeStamp;
 
-    public Statistic(long start) {
-        this.start = start;
+    public Statistic(long startTimeStamp) {
+        this.startTimeStamp = startTimeStamp;
     }
 
     public int incr() {
@@ -26,6 +24,6 @@ public class Statistic {
 
     public void clean() {
         atomicInteger.set(0);
-        start = System.currentTimeMillis();
+        startTimeStamp = System.currentTimeMillis();
     }
 }

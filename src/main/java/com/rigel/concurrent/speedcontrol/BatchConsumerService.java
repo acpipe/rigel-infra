@@ -1,20 +1,17 @@
-package com.rigel.concurrent;
+package com.rigel.concurrent.speedcontrol;
 
 import static java.util.concurrent.TimeUnit.SECONDS;
 
 import java.util.List;
 import java.util.concurrent.LinkedBlockingQueue;
-import java.util.concurrent.RejectedExecutionHandler;
 import java.util.concurrent.ThreadPoolExecutor;
 
 import javax.annotation.PostConstruct;
 
 import org.springframework.stereotype.Service;
 
-
 import com.google.common.util.concurrent.ThreadFactoryBuilder;
 
-import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
 
 /**
@@ -40,6 +37,7 @@ public class BatchConsumerService {
                 .build(),
                 (r, executor) -> {
                     // log.info("blocking queue");
+                    // 如果线程池队列满了, 这里用put方法阻塞住.
                     try {
                         executor.getQueue().put(r);
                     } catch (InterruptedException e) {
