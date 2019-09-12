@@ -17,7 +17,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 public class BatchConsumerTest {
 
     @Autowired
-    private BatchConsumer batchConsumer;
+    private BatchConsumerService batchConsumerService;
 
     @Test
     public void consume() {
@@ -26,6 +26,6 @@ public class BatchConsumerTest {
             list.add(i);
         }
 
-        batchConsumer.consume(list);
+        batchConsumerService.consume(list);
     }
 }
