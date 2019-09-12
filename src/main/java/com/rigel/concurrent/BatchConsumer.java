@@ -23,7 +23,7 @@ import lombok.extern.slf4j.Slf4j;
 @Service
 @Slf4j
 public class BatchConsumer {
-    private static final int CORE_THREAD = 1;
+    private static final int CORE_THREAD = 30;
     private static final int MAX_THREAD_COUNT = 10;
     private static final int KEEP_ALIVE_TIMEOUT = 100;
     private static final int QUEUE_SIZE = 10;
