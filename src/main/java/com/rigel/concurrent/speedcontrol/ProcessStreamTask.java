@@ -26,7 +26,7 @@ public class ProcessStreamTask implements Runnable {
         // log.info("process.value:{}.", value);
         int cnt = statistic.incr();
         // 每100个请求统计一次.
-        if (cnt % 100 == 0) {
+        if (cnt % 1000 == 0) {
             int qps = (int) (statistic.getAtomicInteger().intValue() * 1000L / (System.currentTimeMillis() - statistic.getStartTimeStamp()));
             log.info("qps:{}/s", qps);
             statistic.clean();
