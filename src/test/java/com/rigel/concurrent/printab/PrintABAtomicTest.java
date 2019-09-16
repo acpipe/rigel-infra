@@ -1,7 +1,5 @@
 package com.rigel.concurrent.printab;
 
-import static org.junit.Assert.*;
-
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,13 +11,21 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
  */
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = {"classpath:applicationContext.xml"})
-public class PrintABAutomicServiceTest {
+public class PrintABAtomicTest {
 
     @Autowired
-    private PrintABAutomicService printABAutomicService;
+    private PrintABAtomic printABAtomic;
+
+    @Autowired
+    private PrintABVolatile printABVolatile;
 
     @Test
-    public void printAB() {
-        printABAutomicService.printAB();
+    public void printABAtomic() {
+        printABAtomic.printAB();
+    }
+
+    @Test
+    public void setPrintABVolatile() {
+        printABVolatile.printAB();
     }
 }
