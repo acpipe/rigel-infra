@@ -46,4 +46,9 @@ public class PrintABVolatile implements IPrintAB {
         } catch (Exception e) {
         }
     }
+
+    public static void main(String[] args) {
+        PrintABVolatile printABVolatile = new PrintABVolatile();
+        printABVolatile.printAB();
+    }
 }

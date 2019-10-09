@@ -25,7 +25,8 @@ public class PrintABAtomicTest {
     }
 
     @Test
-    public void setPrintABVolatile() {
+    public void setPrintABVolatile() throws InterruptedException {
         printABVolatile.printAB();
+        Thread.sleep(100000);
     }
 }

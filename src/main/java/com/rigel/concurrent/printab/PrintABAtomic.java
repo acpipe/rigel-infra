@@ -45,4 +45,8 @@ public class PrintABAtomic implements IPrintAB {
         } catch (Exception e) {
         }
     }
+
+    public static void main(String[] args) {
+
+    }
 }
