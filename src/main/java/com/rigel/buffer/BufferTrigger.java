@@ -9,5 +9,9 @@ package com.rigel.buffer;
  * binlog batch更新es索引.
  * ...
  */
-public class BufferTrigger {
+public interface BufferTrigger<E> {
+    void enqueue(E element);
+
+    void manuallyDoTrigger();
+
 }
